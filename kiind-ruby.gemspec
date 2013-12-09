@@ -6,11 +6,11 @@ require 'kiind/ruby/version'
 Gem::Specification.new do |spec|
   spec.name          = "kiind-ruby"
   spec.version       = Kiind::Ruby::VERSION
-  spec.authors       = ["audeemac"]
-  spec.email         = ["amvelasco@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.authors       = ["Audee Velasco"]
+  spec.email         = ["auds@adooylabs.com"]
+  spec.description   = %q{this gem integrates kiind.me platform to your ruby apps}
+  spec.summary       = %q{a gem for kiind.me platform}
+  spec.homepage      = "http://www.adooylabs.com"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -20,4 +20,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "rest-client"
+  spec.add_development_dependency "rspec"
 end

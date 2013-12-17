@@ -16,8 +16,6 @@ module Kiind
 	def self.getrequest(request)
 		begin 
 	 		client = RestClient::Resource.new "#{@endpoint}#{request}" , headers: {"Authorization" => "#{@auth}", "Accept" => "application/json"}
-	 		# puts "***********#{client.url}***********"
-	 		# puts "***********************************"
 			res = client.get
 			JSON.parse(res)
 		rescue => e
@@ -65,38 +63,27 @@ module Kiind
  		end
  	end
 
- 	def self.getcampaign
- 		
- 	end
-
  	def self.postrequest(data)
  		begin
- 			res = RestClient.post "#{endpoint}campaign", JSON.generate( data ),  headers: {"Authorization" => "#{@auth}", "Accept" => "application/json" ,  }
- 			# client.post JSON.generate( data ),  { }
+ 			client = RestClient::Resource.new "#{endpoint}campaign", headers: {"Authorization" => "#{@auth}", "Accept" => "application/json" , :content_type => :json }
+ 			res = client.post(data)
  			JSON.parse(res)
  		rescue => e
  			e
 		end
  	end
 
- 	def self.create_campaign_quote
- 		# data = Hash[{ message: 'I am sorry that I shot you in the eye with a Nerf gun.Enjoy something from Ulla or Bliss on me', 
- 		# 		 subject: 'Sorry', 
- 		# 		 contacts: { firstname: "Graham", lastname: "Baradoy", email: "amvelasco@gmail.com" }, 
- 		# 		 marketplace_gifts: { id: 1, price_in_cents: 5000}, 
- 		# 		 expiry: "2015­12­20", 
- 		# 		 id: "GiftToAdooylabs", 
- 		# 		 quote: true }]
+ 	def self.campaignquote(options = {})
+		data = '{
+				  "message":"this is from modenrmsg",
+				  "subject":"gift card from modernmsg",
+				  "contacts": [{"firstname":"Audee", "lastname":"Velasco","email":"auds@adooylabs.com"}],
+				  "marketplace_gifts": [{"id":1,"price_in_cents":5000}],
+				  "id":"GiftCardTo804",
+				  "quote":true
+				}'
 
- 		data = { message: "I am sorry that I shot you in the eye with a Nerf gun.Enjoy something from Ulla or Bliss on me", 
- 				 subject: "test",
-	 			 contacts: [{ firstname: "Audee", lastname: "Adooylabs", email: "auds@adooylabs.com"}],
- 				 marketplace_gifts: [{ id: 1, price_in_cents: 5000}],
- 				 expiry: "20151220",
- 				 id: "GiftToAdooylabs",
- 				 quote: true}
 
  		self.postrequest(data)
- 		# data
  	end
 end

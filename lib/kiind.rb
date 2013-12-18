@@ -19,7 +19,7 @@ module Kiind
 			res = client.get
 			JSON.parse(res)
 		rescue => e
-			e
+			JSON.parse(e.response)
 		end
  	end
 	def self.account
@@ -69,21 +69,55 @@ module Kiind
  			res = client.post(data)
  			JSON.parse(res)
  		rescue => e
- 			e
+ 			JSON.parse(e.response)
 		end
  	end
 
- 	def self.campaignquote(options = {})
-		data = '{
-				  "message":"this is from modenrmsg",
-				  "subject":"gift card from modernmsg",
-				  "contacts": [{"firstname":"Audee", "lastname":"Velasco","email":"auds@adooylabs.com"}],
-				  "marketplace_gifts": [{"id":1,"price_in_cents":5000}],
-				  "id":"GiftCardTo804",
-				  "quote":true
-				}'
+ 	def self.creategift(options = {})
+ 		#*** this is a working json
+ 		#
+		# data = '{
+		# 		  "message":"this is from modenrmsg",
+		# 		  "subject":"gift card from modernmsg",
+		# 		  "contacts": [{"firstname":"Audee", "lastname":"Velasco","email":"auds@adooylabs.com"}],
+		# 		  "marketplace_gifts": [{"id":1,"price_in_cents":5000}],
+		# 		  "id":"GiftCardTo808",
+		# 		  "expiry":"2012-12-20",
+		# 		  "quote":true
+		# 		}'
 
+		# Kiind.creategift(message: "Thank you for being an awesome person", subject: "Present from ModemMsg", contacts: [{firstname: "Audee", lastname: "Velasco", email: "auds@adooylabs.com"}], marketplace_gifts: [{id:1, price_in_cents:5000}], id: "UserGenID001")
 
- 		self.postrequest(data)
+		#if expiry not set, set it to one year
+		unless options["expiry"]
+			options["expiry"] = (Date.today + 365).to_s
+		end
+
+		#if quote not set, set it to TRUE
+		unless options["quote"]
+			options["quote"] = true
+		end
+		
+ 		self.postrequest(options.to_json)
+ 	end
+
+ 	def self.sendgift(id)
+ 		begin
+	 		client = RestClient::Resource.new "#{endpoint}campaign/#{id}", headers: {"Authorization" => "#{@auth}", "Accept" => "application/json"}
+	 		res = client.put headers: {"Accept" => "application/json"}
+	 		JSON.parse(res)
+	 	rescue => e
+	 		JSON.parse(e.response)
+	 	end
+ 	end
+
+ 	def self.deletegift(id)
+ 		begin
+	 		client = RestClient::Resource.new "#{endpoint}campaign/#{id}", headers: {"Authorization" => "#{@auth}", "Accept" => "application/json"}
+	 		res = client.delete
+	 		JSON.parse(res)
+	 	rescue => e
+	 		JSON.parse(e.response)
+	 	end
  	end
 end

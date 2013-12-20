@@ -7,7 +7,7 @@ end
 
 module Kiind
 	@endpoint = "https://testbed.kiind.me/papi/v1/"
-	@auth = "eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.L2tzL3NnVHRKZUswZVhQSExTc0M4MzV6cUxmb2VucWR6emU2OVN5elVnQTU4cHEwY0Jvc0hCVFhidDhmb1o5dnE2dzFQV0JUNHhSUFRkTWU3cVdvY0E9PQ==.TpLYmrjpSsO1zPRgXOfukU2Mu16o+lVyIbmi9oZwHCY="
+	@auth = ""
 	
 	class << self
     	attr_accessor :endpoint, :auth
@@ -32,9 +32,9 @@ module Kiind
  			request = "marketplace?"
  			if options[:vendor]
  				# check if vendor is a number
- 				request += "vendor=#{options[:vendor]}"
+ 				request = request + "vendor=#{options[:vendor]}"
  			elsif options[:limit]
- 				request += "limit=#{options[:limit]}"
+ 				request = request + "limit=#{options[:limit]}"
  			else
  				request = "marketplace"
  			end
@@ -57,10 +57,24 @@ module Kiind
  			request = "campaign"
  			if options[:id]
  				# todo: get campaign with id
- 				request += "/#{options[:id]}"
+ 				request = request + "/#{options[:id]}"
+ 			elsif options[:uuid]
+ 				request = request + "/#{options[:uuid]}"
  			end
  			self.getrequest("#{request}")
  		end
+ 	end
+
+ 	def self.campaigncount
+ 		
+ 	end
+
+ 	def self.campaignlast
+ 		
+ 	end
+
+ 	def self.campaignfirst
+ 		
  	end
 
  	def self.postrequest(data)
@@ -74,8 +88,6 @@ module Kiind
  	end
 
  	def self.creategift(options = {})
- 		#*** this is a working json
- 		#
 		# data = '{
 		# 		  "message":"this is from modenrmsg",
 		# 		  "subject":"gift card from modernmsg",
@@ -89,14 +101,11 @@ module Kiind
 		# Kiind.creategift(message: "Thank you for being an awesome person", subject: "Present from ModemMsg", contacts: [{firstname: "Audee", lastname: "Velasco", email: "auds@adooylabs.com"}], marketplace_gifts: [{id:1, price_in_cents:5000}], id: "UserGenID001")
 
 		#if expiry not set, set it to one year
-		unless options["expiry"]
-			options["expiry"] = (Date.today + 365).to_s
-		end
+		options[:expiry] = (Date.today + 365).to_s unless options[:expiry] != nil
 
 		#if quote not set, set it to TRUE
-		unless options["quote"]
-			options["quote"] = true
-		end
+		options[:quote] = true unless options[:quote] == false
+		
 		
  		self.postrequest(options.to_json)
  	end
@@ -104,7 +113,7 @@ module Kiind
  	def self.sendgift(id)
  		begin
 	 		client = RestClient::Resource.new "#{endpoint}campaign/#{id}", headers: {"Authorization" => "#{@auth}", "Accept" => "application/json"}
-	 		res = client.put headers: {"Accept" => "application/json"}
+	 		res = client.put headers: { :content_type => "application/json"}
 	 		JSON.parse(res)
 	 	rescue => e
 	 		JSON.parse(e.response)

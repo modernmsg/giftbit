@@ -2,29 +2,29 @@ require "kiind/version"
 
 begin
   require 'rest-client'
-rescue  LoadError
+rescue LoadError
 end
 
 module Kiind
   @endpoint = "https://testbed.kiind.me/papi/v1/"
   @auth = ""
-  
+
   class << self
-      attr_accessor :endpoint, :auth
-    end
+    attr_accessor :endpoint, :auth
+  end
 
   def self.getrequest(request)
-    begin 
-      client = RestClient::Resource.new "#{@endpoint}#{request}" , headers: {"Authorization" => "#{@auth}", "Accept" => "application/json"}
-      res = client.get
-      JSON.parse(res)
-    rescue => e
-      JSON.parse(e.response)
-    end
+    client = RestClient::Resource.new "#{@endpoint}#{request}" , headers: {"Authorization" => "#{@auth}", "Accept" => "application/json"}
+    res    = client.get
+    JSON.parse res
+  rescue => e
+    JSON.parse e.response
   end
+
   def self.account
-    self.getrequest("") #endpoint itself returns the account info
+    getrequest "" # endpoint itself returns the account info
   end
+
   def self.marketplace(options = {})
     # TODO support more options: like the url below
     # https://www.kiind.me/papi/v1/marketplace?min_price_in_cents=1000&max_price_in_cents=5000&region=2&category=5&vendor=7&limit=20&offset=20
@@ -39,17 +39,20 @@ module Kiind
         request = "marketplace"
       end
 
-      self.getrequest("#{request}")
+      getrequest request.to_s
     end
   end
+
   def self.regions
-    self.getrequest("marketplace/regions")
+    getrequest "marketplace/regions"
   end
+
   def self.vendors
-    self.getrequest("marketplace/vendors")
+    getrequest "marketplace/vendors"
   end
+
   def self.categories
-    self.getrequest("marketplace/categories")
+    getrequest "marketplace/categories"
   end
 
   def self.campaign(options = {})
@@ -61,7 +64,7 @@ module Kiind
       elsif options[:uuid]
         request = request + "/#{options[:uuid]}"
       end
-      self.getrequest("#{request}")
+      getrequest request.to_s
     end
   end
 
@@ -78,13 +81,11 @@ module Kiind
   end
 
   def self.postrequest(data)
-    begin
-      client = RestClient::Resource.new "#{endpoint}campaign", headers: {"Authorization" => "#{@auth}", "Accept" => "application/json" , :content_type => :json }
-      res = client.post(data)
-      JSON.parse(res)
-    rescue => e
-      JSON.parse(e.response)
-    end
+    client = RestClient::Resource.new "#{endpoint}campaign", headers: {"Authorization" => "#{@auth}", "Accept" => "application/json" , content_type: :json}
+    res    = client.post(data)
+    JSON.parse res
+  rescue => e
+    JSON.parse e.response
   end
 
   def self.creategift(options = {})
@@ -105,28 +106,23 @@ module Kiind
 
     #if quote not set, set it to TRUE
     options[:quote] = true unless options[:quote] == false
-    
-    
-    self.postrequest(options.to_json)
+
+    postrequest options.to_json
   end
 
   def self.sendgift(id)
-    begin
-      client = RestClient::Resource.new "#{endpoint}campaign/#{id}", headers: {"Authorization" => "#{@auth}", "Accept" => "application/json"}
-      res = client.put headers: { :content_type => "application/json"}
-      JSON.parse(res)
-    rescue => e
-      JSON.parse(e.response)
-    end
+    client = RestClient::Resource.new "#{endpoint}campaign/#{id}", headers: {"Authorization" => "#{@auth}", "Accept" => "application/json"}
+    res    = client.put headers: {content_type: "application/json"}
+    JSON.parse res
+  rescue => e
+    JSON.parse e.response
   end
 
   def self.deletegift(id)
-    begin
-      client = RestClient::Resource.new "#{endpoint}campaign/#{id}", headers: {"Authorization" => "#{@auth}", "Accept" => "application/json"}
-      res = client.delete
-      JSON.parse(res)
-    rescue => e
-      JSON.parse(e.response)
-    end
+    client = RestClient::Resource.new "#{endpoint}campaign/#{id}", headers: {"Authorization" => "#{@auth}", "Accept" => "application/json"}
+    res    = client.delete
+    JSON.parse res
+  rescue => e
+    JSON.parse e.response
   end
 end

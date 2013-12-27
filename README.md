@@ -1,4 +1,4 @@
-# Kiind::Ruby
+# A Ruby gem for [Kiind](http://kiind.me) API
 
 TODO: Write a gem description
 
@@ -6,7 +6,7 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'kiind-ruby'
+    gem 'kiind'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install kiind-ruby
+    $ gem install kiind
 
 ## Usage
 

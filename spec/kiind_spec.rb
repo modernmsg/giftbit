@@ -12,19 +12,19 @@ describe Kiind do
   end
   
   describe "#account" do
-	  it "returns Welcome Msg with valid credentials" do
+    it "returns Welcome Msg with valid credentials" do
       res = Kiind.account
 
       expect(res["info"]["name"]).to eql "Credentials are valid"
-	  end
+    end
 
-	  it "returns Unauthorized Msg with invalid credentials" do
+    it "returns Unauthorized Msg with invalid credentials" do
       Kiind.auth = "notavalidtoken"
       res = Kiind.account
 
       expect(res["text"]).to eql "Unauthorized"
       expect(res["status"]).to eql 401
-	  end
+    end
   end
 
   describe "#marketplace" do
@@ -45,10 +45,10 @@ describe Kiind do
   end
 
   describe "#regions" do
-  	it "list all 36 regions from kiind database" do
+    it "list all 36 regions from kiind database" do
       res = Kiind.regions
       expect(res["regions"].count).to eql 36 #TODO: make this a dynamic fetch compare
-  	end
+    end
 
     it "returns Regions Retrieved Msg" do
       res = Kiind.regions
@@ -57,10 +57,10 @@ describe Kiind do
   end
 
   describe "#vendors" do
-  	it "list all 76 vendor from kiind database" do
+    it "list all 76 vendor from kiind database" do
       res = Kiind.vendors
       expect(res["vendors"].count).to eql 76 #TODO: make this a dynamic fetch compare
-  	end
+    end
 
     it "returns Retrieved Vendors Msg" do
       res = Kiind.vendors
@@ -69,10 +69,10 @@ describe Kiind do
   end
 
   describe "#categories" do
-  	it "list all 15 categories from kiind database" do
+    it "list all 15 categories from kiind database" do
       res = Kiind.categories
       expect(res["categories"].count).to eql 15
-  	end
+    end
 
     it "returns Retrieved Categories Msg" do
       res = Kiind.categories
@@ -113,13 +113,13 @@ describe Kiind do
   end
 
   describe "#creategift" do
-  	it "create quote for gift default" do
+    it "create quote for gift default" do
       data_create = data
       data_create[:id] = "KiindGift#{Time.now.utc.to_i}"
       gift_create = Kiind.creategift(data_create)
 
       expect(gift_create["info"]["name"]).to eql "Campaign Quote"
-  	end
+    end
 
     #FYI - I don't want to test here the actual sending since we are not allow
     # => to delete campaign that are sent or status:"Campaign Created" 
@@ -151,27 +151,27 @@ describe Kiind do
   #FYI - I don't want to test here the actual sending since we are not allow
   # => to delete campaign that are sent or status:"Campaign Created"
   # describe "#sendgift" do
-  # 	it "sends quoted gift with ID" do
+  #   it "sends quoted gift with ID" do
   #     data[:id] = "KiindGift#{Time.now.utc.to_i}"
-  # 		gift = Kiind.creategift(data) 
+  #     gift = Kiind.creategift(data) 
 
   #     #this is step is approval of quote gift
   #     res = Kiind.sendgift(gift["campaign"]["id"]) 
 
   #     expect(res["info"]["name"]).to eql "Campaign Created"
-  # 	end
+  #   end
   # end
 
   #FYI: Only Status=QUOTE campaign can be deleted
   describe "#deletegift" do
-  	it "deletes the gift with ID" do
+    it "deletes the gift with ID" do
       data_del = data
       data_del[:id] = "KiindGift#{Time.now.utc.to_i}"
-  		gift = Kiind.creategift(data_del)
+      gift = Kiind.creategift(data_del)
 
       res = Kiind.deletegift(gift["campaign"]["id"])
       expect(res["info"]["name"]).to eql "Campaign Deleted"
-  	end
+    end
   end
 
   describe "#getrequest" do

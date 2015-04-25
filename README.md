@@ -1,4 +1,4 @@
-# A Ruby gem for [Kiind](http://kiind.me) API
+# A Ruby gem for [Giftbit](http://www.giftbit.com) API
 
 TODO: Write a gem description
 
@@ -6,7 +6,7 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'kiind'
+    gem 'giftbit'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install kiind
+    $ gem install giftbit
 
 ## Usage
 

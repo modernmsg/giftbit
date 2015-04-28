@@ -1,12 +1,12 @@
-require "kiind/version"
+require "giftbit/version"
 
 begin
   require 'rest-client'
 rescue LoadError
 end
 
-module Kiind
-  @endpoint = "https://testbed.kiind.me/papi/v1/"
+module Giftbit
+  @endpoint = "https://testbed.giftbit.me/papi/v1/"
   @auth = ""
 
   class << self
@@ -27,7 +27,7 @@ module Kiind
 
   def self.marketplace(options = {})
     # TODO support more options: like the url below
-    # https://www.kiind.me/papi/v1/marketplace?min_price_in_cents=1000&max_price_in_cents=5000&region=2&category=5&vendor=7&limit=20&offset=20
+    # https://www.giftbit.me/papi/v1/marketplace?min_price_in_cents=1000&max_price_in_cents=5000&region=2&category=5&vendor=7&limit=20&offset=20
     if options
       request = "marketplace?"
       if options[:vendor]
@@ -99,7 +99,7 @@ module Kiind
     #       "quote":true
     #     }'
 
-    # Kiind.creategift(message: "Thank you for being an awesome person", subject: "Present from ModemMsg", contacts: [{firstname: "Audee", lastname: "Velasco", email: "auds@adooylabs.com"}], marketplace_gifts: [{id:1, price_in_cents:5000}], id: "UserGenID001")
+    # Giftbit.creategift(message: "Thank you for being an awesome person", subject: "Present from ModemMsg", contacts: [{firstname: "Audee", lastname: "Velasco", email: "auds@adooylabs.com"}], marketplace_gifts: [{id:1, price_in_cents:5000}], id: "UserGenID001")
 
     #if expiry not set, set it to one year
     options[:expiry] = (Date.today + 365).to_s unless options[:expiry] != nil

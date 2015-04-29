@@ -25,7 +25,6 @@ module Giftbit
         }
       end
 
-      # GET (parsed) response from resources
       # Convenience method for building a RestClient::Resource
       def resource(options = {})
         RestClient::Resource.new @endpoint, default_resource_options.merge(options)
@@ -48,6 +47,7 @@ module Giftbit
         JSON.parse e.response
       end
 
+      # GET (parsed) response from resources
       def get(path, request_options = {}, resource_options = {})
         response(:get, resource(resource_options)[path], request_options)
       end

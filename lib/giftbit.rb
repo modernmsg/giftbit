@@ -37,11 +37,11 @@ module Giftbit
     end
 
     # Create a gift
-    def creategift(params = {})
-      params[:expiry] ||= (Date.today + 365).to_s
-      params[:quote] = params[:quote] != false
+    def creategift(body = {})
+      body[:expiry] ||= (Date.today + 365).to_s
+      body[:quote] = body[:quote] != false
 
-      post 'campaign', body: params
+      post 'campaign', body: body
     end
 
     # Send a gift

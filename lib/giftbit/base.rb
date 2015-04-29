@@ -37,7 +37,7 @@ module Giftbit
         if body.nil? or options.empty?
           response = resource.send(method)
         elsif body
-          resource.send(method, body, options)
+          resource.send(method, body.to_json, options)
         else
           resource.send(method, options)
         end

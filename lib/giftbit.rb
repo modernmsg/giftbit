@@ -1,128 +1,57 @@
-require "giftbit/version"
-
-begin
-  require 'rest-client'
-rescue LoadError
-end
+require 'giftbit/version'
+require 'giftbit/base'
 
 module Giftbit
-  @endpoint = "https://testbed.giftbit.me/papi/v1/"
-  @auth = ""
+  include Giftbit::Base
 
+  # Convenience methods to interact with resources on top of Giftbit::Base
   class << self
-    attr_accessor :endpoint, :auth
-  end
-
-  def self.getrequest(request)
-    client = RestClient::Resource.new "#{@endpoint}#{request}" , headers: {"Authorization" => "#{@auth}", "Accept" => "application/json"}
-    res    = client.get
-    JSON.parse res
-  rescue => e
-    JSON.parse e.response
-  end
-
-  def self.account
-    getrequest "" # endpoint itself returns the account info
-  end
-
-  def self.marketplace(options = {})
-    # TODO support more options: like the url below
-    # https://www.giftbit.me/papi/v1/marketplace?min_price_in_cents=1000&max_price_in_cents=5000&region=2&category=5&vendor=7&limit=20&offset=20
-    if options
-      request = "marketplace?"
-      if options[:vendor]
-        # check if vendor is a number
-        request = request + "vendor=#{options[:vendor]}"
-      elsif options[:limit]
-        request = request + "limit=#{options[:limit]}"
-      else
-        request = "marketplace"
-      end
-
-      getrequest request.to_s
+    # Root of resource returns account info
+    def account
+      get ''
     end
-  end
 
-  def self.regions
-    getrequest "marketplace/regions"
-  end
-
-  def self.vendors
-    getrequest "marketplace/vendors"
-  end
-
-  def self.categories
-    getrequest "marketplace/categories"
-  end
-
-  def self.campaign(options = {})
-    if options
-      request = "campaign"
-      if options[:id]
-        # todo: get campaign with id
-        request = request + "/#{options[:id]}"
-      elsif options[:uuid]
-        request = request + "/#{options[:uuid]}"
-      end
-      getrequest request.to_s
+    # Marketplace resource
+    def marketplace(params = {})
+      get 'marketplace', params: params
     end
-  end
 
-  def self.campaigncount
-    
-  end
+    # Regions resource
+    def regions
+      get 'marketplace/regions'
+    end
 
-  def self.campaignlast
-    
-  end
+    # Vendors resource
+    def vendors
+      get 'marketplace/vendors'
+    end
 
-  def self.campaignfirst
-    
-  end
+    # Categories resource
+    def categories
+      get 'marketplace/categories'
+    end
 
-  def self.postrequest(data)
-    client = RestClient::Resource.new "#{endpoint}campaign", headers: {"Authorization" => "#{@auth}", "Accept" => "application/json" , content_type: :json}
-    res    = client.post(data)
-    JSON.parse res
-  rescue => e
-    JSON.parse e.response
-  end
+    # Campaign resource
+    def campaign(params = {})
+      get 'campaign', params: params
+    end
 
-  def self.creategift(options = {})
-    # data = '{
-    #       "message":"this is from modenrmsg",
-    #       "subject":"gift card from modernmsg",
-    #       "contacts": [{"firstname":"Audee", "lastname":"Velasco","email":"auds@adooylabs.com"}],
-    #       "marketplace_gifts": [{"id":1,"price_in_cents":5000}],
-    #       "id":"GiftCardTo808",
-    #       "expiry":"2012-12-20",
-    #       "quote":true
-    #     }'
+    # Create a gift
+    def creategift(params = {})
+      params[:expiry] ||= (Date.today + 365).to_s
+      params[:quote] = params[:quote] != false
 
-    # Giftbit.creategift(message: "Thank you for being an awesome person", subject: "Present from ModemMsg", contacts: [{firstname: "Audee", lastname: "Velasco", email: "auds@adooylabs.com"}], marketplace_gifts: [{id:1, price_in_cents:5000}], id: "UserGenID001")
+      post 'campaign', body: params
+    end
 
-    #if expiry not set, set it to one year
-    options[:expiry] = (Date.today + 365).to_s unless options[:expiry] != nil
+    # Send a gift
+    def sendgift(id)
+      put "campaign/#{id}"
+    end
 
-    #if quote not set, set it to TRUE
-    options[:quote] = true unless options[:quote] == false
-
-    postrequest options.to_json
-  end
-
-  def self.sendgift(id)
-    client = RestClient::Resource.new "#{endpoint}campaign/#{id}", headers: {"Authorization" => "#{@auth}", "Accept" => "application/json"}
-    res    = client.put headers: {content_type: "application/json"}
-    JSON.parse res
-  rescue => e
-    JSON.parse e.response
-  end
-
-  def self.deletegift(id)
-    client = RestClient::Resource.new "#{endpoint}campaign/#{id}", headers: {"Authorization" => "#{@auth}", "Accept" => "application/json"}
-    res    = client.delete
-    JSON.parse res
-  rescue => e
-    JSON.parse e.response
+    # Delete a gift
+    def deletegift(id)
+      delete "campaign/#{id}"
+    end
   end
 end

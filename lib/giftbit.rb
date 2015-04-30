@@ -5,7 +5,7 @@ module Giftbit
   include Giftbit::Base
 
   # Convenience methods to interact with resources on top of Giftbit::Base
-  class << self
+  module ClassMethods
     # Root of resource returns account info
     def account
       get ''
@@ -17,18 +17,18 @@ module Giftbit
     end
 
     # Regions resource
-    def regions
-      get 'marketplace/regions'
+    def regions(params = {})
+      get 'marketplace/regions', params: params
     end
 
     # Vendors resource
-    def vendors
-      get 'marketplace/vendors'
+    def vendors(params = {})
+      get 'marketplace/vendors', params: params
     end
 
     # Categories resource
-    def categories
-      get 'marketplace/categories'
+    def categories(params = {})
+      get 'marketplace/categories', params: params
     end
 
     # Campaign resource
@@ -54,4 +54,6 @@ module Giftbit
       delete "campaign/#{id}"
     end
   end
+
+  extend ClassMethods
 end

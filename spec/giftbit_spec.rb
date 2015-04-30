@@ -117,7 +117,6 @@ describe Giftbit do
 
   describe "#creategift" do
     it "create quote for gift default" do
-      pending("API not returning 400 Bad Request")
       data_create = data
       data_create[:id] = "GiftbitGift#{Time.now.utc.to_i}"
       gift_create = Giftbit.creategift(data_create)
@@ -169,7 +168,6 @@ describe Giftbit do
   #FYI: Only Status=QUOTE campaign can be deleted
   describe "#deletegift" do
     it "deletes the gift with ID" do
-      pending("API not returning 400 Bad Request")
       data_del = data
       data_del[:id] = "GiftbitGift#{Time.now.utc.to_i}"
       gift = Giftbit.creategift(data_del)

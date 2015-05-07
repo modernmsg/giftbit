@@ -46,7 +46,7 @@ module Giftbit
 
     # Send a gift
     def sendgift(id)
-      put "campaign/#{id}"#, body: {}
+      put "campaign/#{id}"
     end
 
     # Delete a gift

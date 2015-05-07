@@ -1,4 +1,4 @@
-require 'core_ext/hash'
+require 'active_support'
 
 begin
   require 'rest-client'

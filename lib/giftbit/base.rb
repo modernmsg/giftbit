@@ -11,10 +11,9 @@ module Giftbit
       klass.extend ClassMethods
 
       # By default, set the endpoint to production
-      klass.endpoint  ||= "https://api.giftbit.com/papi/v1/"
-
+      klass.endpoint  ||= 'https://api.giftbit.com/papi/v1/'
       # By default, set the auth token to be nil
-      klass.auth      ||= nil
+      klass.auth      ||= ''
     end
 
     module ClassMethods
@@ -46,8 +45,10 @@ module Giftbit
         end
 
         JSON.parse(response)
-      rescue RestClient::Unauthorized => e
-        JSON.parse(e.response)
+      rescue => e
+        if e.response
+          JSON.parse(e.response)
+        end
       end
 
       # GET (parsed) response from resources
@@ -71,7 +72,7 @@ module Giftbit
       def put(path, request_options = {}, resource_options = {})
         resource_options[:headers] ||= {}
         resource_options[:headers]['Content-Type'] ||= 'json'
-        response(:post, resource(resource_options)[path], request_options)
+        response(:put, resource(resource_options)[path], request_options)
       end
     end
   end

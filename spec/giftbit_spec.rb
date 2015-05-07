@@ -81,15 +81,11 @@ describe Giftbit do
 
   describe "#campaign" do
     it "list all campaigns created" do
-      pending("API not returning 500 errors")
-
       res = Giftbit.campaign
       expect(res["info"]["name"]).to eql "Campaign Retrieved"
     end
 
     it "can fetch campaign with ID provided" do
-      pending("API not returning 500 errors")
-
       data_fetch = data
       data_fetch[:id] = "GiftbitGift#{Time.now.utc.to_i}"
       gift = Giftbit.creategift(data_fetch) 
@@ -101,8 +97,6 @@ describe Giftbit do
     end
 
     after(:all) do
-      puts "cleaning up... "
-
       @cp_list = Giftbit.campaign 
 
       @cp_list["campaigns"].map do |campaign|
@@ -110,8 +104,6 @@ describe Giftbit do
           res = Giftbit.deletegift(campaign["id"])
         end
       end
-
-      puts "done cleaning.. "
     end
   end
 
@@ -124,21 +116,16 @@ describe Giftbit do
       expect(gift_create["info"]["name"]).to eql "Campaign Quote"
     end
 
-    #FYI - I don't want to test here the actual sending since we are not allow
-    # => to delete campaign that are sent or status:"Campaign Created" 
+    it "sends gift right away if quote is set to false " do
+      data[:id] = "GiftbitGift#{Time.now.utc.to_i}"
+      data[:quote] = false
 
-    # it "sends gift right away if quote is set to false " do
-    #   data[:id] = "GiftbitGift#{Time.now.utc.to_i}"
-    #   data[:quote] = false
+      gift = Giftbit.creategift(data)
 
-    #   gift = Giftbit.creategift(data)
-
-    #   expect(gift["info"]["name"]).to eql "Campaign Created"
-    # end
+      expect(gift["info"]["name"]).to eql "Campaign Created"
+    end
 
     after(:all) do
-      puts "cleaning up... "
-
       @cp_list = Giftbit.campaign 
 
       @cp_list["campaigns"].map do |campaign|
@@ -146,26 +133,22 @@ describe Giftbit do
           res = Giftbit.deletegift(campaign["id"])
         end
       end
-
-      puts "done cleaning.. "
     end
   end
 
-  #FYI - I don't want to test here the actual sending since we are not allow
-  # => to delete campaign that are sent or status:"Campaign Created"
-  # describe "#sendgift" do
-  #   it "sends quoted gift with ID" do
-  #     data[:id] = "GiftbitGift#{Time.now.utc.to_i}"
-  #     gift = Giftbit.creategift(data) 
+  describe "#sendgift" do
+    it "sends quoted gift with ID" do
+      data[:id] = "GiftbitGift#{Time.now.utc.to_i}"
+      data[:quote] = true
+      gift = Giftbit.creategift(data) 
 
-  #     #this is step is approval of quote gift
-  #     res = Giftbit.sendgift(gift["campaign"]["id"]) 
+      #this is step is approval of quote gift
+      res = Giftbit.sendgift(gift["campaign"]["id"]) 
 
-  #     expect(res["info"]["name"]).to eql "Campaign Created"
-  #   end
-  # end
+      expect(res["info"]["name"]).to eql "Campaign Created"
+    end
+  end
 
-  #FYI: Only Status=QUOTE campaign can be deleted
   describe "#deletegift" do
     it "deletes the gift with ID" do
       data_del = data
@@ -188,5 +171,4 @@ describe Giftbit do
       expect { Giftbit.post }.to raise_error(ArgumentError)
     end
   end
-
 end

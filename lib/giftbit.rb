@@ -36,8 +36,12 @@ module Giftbit
       get 'campaign', params: params
     end
 
+    def gifts(params = {})
+      get 'gifts', params: params
+    end
+
     # Create a gift
-    def creategift(body = {})
+    def create_gift(body = {})
       body[:expiry] ||= (Date.today + 365).to_s
       body[:quote] = body[:quote] != false
 
@@ -45,12 +49,12 @@ module Giftbit
     end
 
     # Send a gift
-    def sendgift(id)
+    def send_gift(id)
       put "campaign/#{id}"
     end
 
     # Delete a gift
-    def deletegift(id)
+    def delete_gift(id)
       delete "campaign/#{id}"
     end
   end

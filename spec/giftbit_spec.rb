@@ -88,11 +88,11 @@ describe Giftbit do
     it "can fetch campaign with ID provided" do
       data_fetch = data
       data_fetch[:id] = "GiftbitGift#{Time.now.utc.to_i}"
-      gift = Giftbit.creategift(data_fetch) 
+      gift = Giftbit.create_gift(data_fetch) 
 
       res = Giftbit.campaign(id: gift["info"]["id"])
 
-      expect(res["info"]["id"]).to eql res["info"]["id"]
+      expect(res["info"]["id"]).to eql gift["info"]["id"]
       expect(res["info"]["name"]).to eql "Campaign Retrieved"
     end
 
@@ -101,26 +101,26 @@ describe Giftbit do
 
       @cp_list["campaigns"].map do |campaign|
         if (campaign["id"].include? "GiftbitGift") && campaign["status"] == "QUOTE"
-          res = Giftbit.deletegift(campaign["id"])
+          res = Giftbit.delete_gift(campaign["id"])
         end
       end
     end
   end
 
-  describe "#creategift" do
+  describe "#create_gift" do
     it "create quote for gift default" do
       data_create = data
       data_create[:id] = "GiftbitGift#{Time.now.utc.to_i}"
-      gift_create = Giftbit.creategift(data_create)
+      gift = Giftbit.create_gift(data_create)
 
-      expect(gift_create["info"]["name"]).to eql "Campaign Quote"
+      expect(gift["info"]["name"]).to eql "Campaign Quote"
     end
 
     it "sends gift right away if quote is set to false " do
       data[:id] = "GiftbitGift#{Time.now.utc.to_i}"
       data[:quote] = false
 
-      gift = Giftbit.creategift(data)
+      gift = Giftbit.create_gift(data)
 
       expect(gift["info"]["name"]).to eql "Campaign Created"
     end
@@ -130,45 +130,65 @@ describe Giftbit do
 
       @cp_list["campaigns"].map do |campaign|
         if (campaign["id"].include? "GiftbitGift") && campaign["status"] == "QUOTE"
-          res = Giftbit.deletegift(campaign["id"])
+          res = Giftbit.delete_gift(campaign["id"])
         end
       end
     end
   end
 
-  describe "#sendgift" do
+  describe "#send_gift" do
     it "sends quoted gift with ID" do
       data[:id] = "GiftbitGift#{Time.now.utc.to_i}"
       data[:quote] = true
-      gift = Giftbit.creategift(data) 
+      gift = Giftbit.create_gift(data) 
 
       #this is step is approval of quote gift
-      res = Giftbit.sendgift(gift["campaign"]["id"]) 
+      res = Giftbit.send_gift(gift["campaign"]["id"]) 
 
       expect(res["info"]["name"]).to eql "Campaign Created"
     end
   end
 
-  describe "#deletegift" do
+  describe "#delete_gift" do
     it "deletes the gift with ID" do
       data_del = data
       data_del[:id] = "GiftbitGift#{Time.now.utc.to_i}"
-      gift = Giftbit.creategift(data_del)
+      gift = Giftbit.create_gift(data_del)
 
-      res = Giftbit.deletegift(gift["campaign"]["id"])
+      res = Giftbit.delete_gift(gift["campaign"]["id"])
       expect(res["info"]["name"]).to eql "Campaign Deleted"
     end
   end
 
-  describe "#getrequest" do
-    it "raise an error if no argument" do
-      expect { Giftbit.get }.to raise_error(ArgumentError)
-    end
-  end
+  describe "#gifts" do
+    it "can fetch the gifts for a given campaign" do
+      data_create = data
+      data_create[:id] = "GiftbitGift#{Time.now.utc.to_i}"
+      data_create[:quote] = false
+      gift = Giftbit.create_gift(data_create)
 
-  describe "#postrequest" do
-    it "raise and error if no argument" do
-      expect { Giftbit.post }.to raise_error(ArgumentError)
+      sleep 30
+
+      gifts = Giftbit.gifts(campaign_uuid: gift["campaign"]["uuid"])
+      expect(gifts['gifts'].length).to be > 0
+
+      gifts['gifts'][0].tap do |g|
+        expect(g['campaign_uuid']).to eql gift["campaign"]["uuid"]
+        expect(g['status']).to eql 'SENT_AND_REDEEMABLE'
+        expect(g['delivery_status']).to eql 'DELIVERED'
+        expect(g['redeemed_date']).to eql nil
+        expect(g['management_dashboard_link']).to eql "http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=#{gift["campaign"]["uuid"]}&gift_uuid=#{g["uuid"]}"
+      end
+    end
+
+    after(:all) do
+      @cp_list = Giftbit.campaign 
+
+      @cp_list["campaigns"].map do |campaign|
+        if (campaign["id"].include? "GiftbitGift") && campaign["status"] == "QUOTE"
+          res = Giftbit.delete_gift(campaign["id"])
+        end
+      end
     end
   end
 end

@@ -1,18 +1,14 @@
 require 'active_support'
-
-begin
-  require 'rest-client'
-rescue LoadError
-end
+require 'rest-client'
 
 module Giftbit
   module Base
     def self.included(klass)
       klass.extend ClassMethods
 
-      # By default, set the endpoint to production
-      klass.endpoint  ||= 'https://api.giftbit.com/papi/v1/'
-      # By default, set the auth token to be nil
+      # By default, set the endpoint to testing
+      klass.endpoint  ||= 'https://testbedapp.giftbit.com/papi/v1/'
+      # By default, set the auth token to be empty
       klass.auth      ||= ''
     end
 
@@ -24,7 +20,8 @@ module Giftbit
         {
           headers: {
             "Authorization" => "Bearer #{@auth}",
-            "Accept"        => "application/json"
+            "Accept"        => "application/json",
+            "Content-Type"  => "json"
           }
         }
       end
@@ -46,8 +43,10 @@ module Giftbit
 
         JSON.parse(response)
       rescue => e
-        if e.response
+        if e.respond_to?(:response)
           JSON.parse(e.response)
+        else
+          raise e
         end
       end
 
@@ -63,15 +62,11 @@ module Giftbit
 
       # POST (parsed) response from resources
       def post(path, request_options = {}, resource_options = {})
-        resource_options[:headers] ||= {}
-        resource_options[:headers]['Content-Type'] ||= 'json'
         response(:post, resource(resource_options)[path], request_options)
       end
 
       # PUT (parsed) response from resources
       def put(path, request_options = {}, resource_options = {})
-        resource_options[:headers] ||= {}
-        resource_options[:headers]['Content-Type'] ||= 'json'
         response(:put, resource(resource_options)[path], request_options)
       end
     end

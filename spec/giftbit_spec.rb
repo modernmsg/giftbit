@@ -181,6 +181,21 @@ describe Giftbit do
       end
     end
 
+    it "can re-send a email for a given campaign gift" do
+      data_create = data
+      data_create[:id] = "GiftbitGift#{Time.now.utc.to_i}"
+      data_create[:quote] = false
+      gift = Giftbit.create_gift(data_create)
+
+      sleep 30
+
+      gift, * = Giftbit.gifts(campaign_uuid: gift['campaign']['uuid'])['gifts']
+
+      res = Giftbit.resend_gift(gift['uuid'])
+
+      expect(res['info']['code']).to eql 'INFO_GIFTS_RESENT'
+    end
+
     after(:all) do
       @cp_list = Giftbit.campaign 
 

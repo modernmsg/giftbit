@@ -57,6 +57,11 @@ module Giftbit
     def delete_gift(id)
       delete "campaign/#{id}"
     end
+
+    # Re-send a gift email
+    def resend_gift(gift_uuid)
+      put "gifts/#{gift_uuid}", body: { resend: true }
+    end
   end
 
   extend ClassMethods

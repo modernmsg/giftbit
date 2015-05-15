@@ -1,14 +1,14 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'kiind/version'
+require 'giftbit/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "kiind"
-  spec.version       = Kiind::VERSION
+  spec.name          = "giftbit"
+  spec.version       = Giftbit::VERSION
   spec.authors       = ["Audee Velasco", "Sean Linsley"]
   spec.email         = ["auds@adooylabs.com", "sean@modernmsg.com"]
-  spec.summary       = "A Ruby gem for the Kiind API"
-  spec.homepage      = "http://www.github.com/modernmsg/kiind"
+  spec.summary       = "A Ruby gem for the Giftbit API"
+  spec.homepage      = "http://www.github.com/modernmsg/giftbit"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -18,6 +18,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 1.9.3"
 
   spec.add_dependency "rest-client"
+  spec.add_dependency "activesupport"
 
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"

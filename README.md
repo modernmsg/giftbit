@@ -1,6 +1,6 @@
 # A Ruby gem for [Giftbit](http://www.giftbit.com) API
 
-TODO: Write a gem description
+[![Travis CI](http://img.shields.io/travis/modernmsg/giftbit/master.svg)](https://travis-ci.org/modernmsg/giftbit)
 
 ## Installation
 

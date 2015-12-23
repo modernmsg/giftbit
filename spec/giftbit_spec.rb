@@ -44,7 +44,7 @@ describe Giftbit do
   end
 
   describe "#regions" do
-    it "list all 36 regions from giftbit database" do
+    it "list all regions from giftbit database" do
       res = Giftbit.regions
       expect(res["regions"].count).to eql 36 #TODO: make this a dynamic fetch compare
     end
@@ -56,9 +56,9 @@ describe Giftbit do
   end
 
   describe "#vendors" do
-    it "list all 76 vendor from giftbit database" do
+    it "list all vendors from giftbit database" do
       res = Giftbit.vendors
-      expect(res["vendors"].count).to eql 80 #TODO: make this a dynamic fetch compare
+      expect(res["vendors"].count).to eql 24 #TODO: make this a dynamic fetch compare
     end
 
     it "returns Retrieved Vendors Msg" do

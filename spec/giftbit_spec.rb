@@ -9,7 +9,7 @@ describe Giftbit do
     Giftbit.endpoint = endpoint
     Giftbit.auth = auth
   end
-  
+
   describe "#account" do
     it "returns Welcome Msg with valid credentials" do
       res = Giftbit.account
@@ -88,7 +88,7 @@ describe Giftbit do
     it "can fetch campaign with ID provided" do
       data_fetch = data
       data_fetch[:id] = "GiftbitGift#{Time.now.utc.to_i}"
-      gift = Giftbit.create_gift(data_fetch) 
+      gift = Giftbit.create_gift(data_fetch)
 
       res = Giftbit.campaign(id: gift["info"]["id"])
 
@@ -97,7 +97,7 @@ describe Giftbit do
     end
 
     after(:all) do
-      @cp_list = Giftbit.campaign 
+      @cp_list = Giftbit.campaign
 
       @cp_list["campaigns"].map do |campaign|
         if (campaign["id"].include? "GiftbitGift") && campaign["status"] == "QUOTE"
@@ -126,7 +126,7 @@ describe Giftbit do
     end
 
     after(:all) do
-      @cp_list = Giftbit.campaign 
+      @cp_list = Giftbit.campaign
 
       @cp_list["campaigns"].map do |campaign|
         if (campaign["id"].include? "GiftbitGift") && campaign["status"] == "QUOTE"
@@ -140,10 +140,10 @@ describe Giftbit do
     it "sends quoted gift with ID" do
       data[:id] = "GiftbitGift#{Time.now.utc.to_i}"
       data[:quote] = true
-      gift = Giftbit.create_gift(data) 
+      gift = Giftbit.create_gift(data)
 
       #this is step is approval of quote gift
-      res = Giftbit.send_gift(gift["campaign"]["id"]) 
+      res = Giftbit.send_gift(gift["campaign"]["id"])
 
       expect(res["info"]["name"]).to eql "Campaign Created"
     end
@@ -197,13 +197,26 @@ describe Giftbit do
     end
 
     after(:all) do
-      @cp_list = Giftbit.campaign 
+      @cp_list = Giftbit.campaign
 
       @cp_list["campaigns"].map do |campaign|
         if (campaign["id"].include? "GiftbitGift") && campaign["status"] == "QUOTE"
           res = Giftbit.delete_gift(campaign["id"])
         end
       end
+    end
+  end
+
+  describe "#get_links" do
+    it "returns link status" do
+      data_fetch = data
+      data_fetch[:id] = "GiftbitGift#{Time.now.utc.to_i}"
+      data_fetch[:delivery_type] = 'SHORTLINK'
+      gift = Giftbit.create_gift(data_fetch)
+
+      res = Giftbit.get_links(gift["campaign"]["id"])
+
+      expect(res["info"]["code"]).to eql "INFO_LINKS_GENERATION_IN_PROGRESS"
     end
   end
 end

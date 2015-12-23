@@ -48,6 +48,7 @@ module Giftbit
       post 'campaign', body: body
     end
 
+
     # Send a gift
     def send_gift(id)
       put "campaign/#{id}"
@@ -61,6 +62,10 @@ module Giftbit
     # Re-send a gift email
     def resend_gift(gift_uuid)
       put "gifts/#{gift_uuid}", body: { resend: true }
+    end
+
+    def get_links(campaign_id)
+      get "links/#{campaign_id}"
     end
   end
 

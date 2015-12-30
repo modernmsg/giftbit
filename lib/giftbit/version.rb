@@ -1,3 +1,3 @@
-module Giftbit
-  VERSION = "0.0.1"
+class Giftbit
+  VERSION = '0.0.1'
 end

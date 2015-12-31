@@ -6,15 +6,21 @@
 
 Add this line to your application's Gemfile:
 
-    gem 'giftbit'
+```ruby
+gem 'giftbit'
+```
 
 And then execute:
 
-    $ bundle
+```
+bundle
+```
 
 Or install it yourself as:
 
-    $ gem install giftbit
+```
+gem install giftbit
+```
 
 ## Usage
 

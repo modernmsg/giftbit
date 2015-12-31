@@ -1,10 +1,28 @@
 require 'giftbit/version'
 require 'giftbit/base'
 
-module Giftbit
-  include Giftbit::Base
+class Giftbit
+  extend Base
+  include Base
 
-  module ClassMethods
+  # Class-level methods only work if you have a single API account. This lets
+  # you instantiate the API for a given account, if you have multiple.
+  def initialize(auth:)
+    fail 'no auths set' unless auths = self.class.auths
+    self.auth = auths.fetch(auth)
+  end
+
+  # This lets you call the same API requests on every account you have.
+  # This is useful e.g. to check the status of every gift in every account.
+  def self.each_auth
+    fail 'no auths set' unless auths
+    auths.each do |name, key|
+      api = new auth: name
+      api.instance_exec{ yield }
+    end
+  end
+
+  module Methods
     def account
       get ''
     end
@@ -57,5 +75,6 @@ module Giftbit
     end
   end
 
-  extend ClassMethods
+  extend Methods
+  include Methods
 end

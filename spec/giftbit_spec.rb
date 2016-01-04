@@ -2,7 +2,6 @@ require 'giftbit'
 
 describe Giftbit do
   let(:auth) { 'eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.TFdWYU5VTVhzK3JFaVhHT2p5VDRHNFRsUk1ybnk2V2E4TDNDSW5meEdXdTVERUJNeHlDTEU1K216Qk1hb3Q4QlZaTVJvWndjR2ZoS01xc3gzdnZMUHdQckN1Z0kreG9rYVF3c1JjUjNkNlNLVmROQTlJb0hvMmpHdkx2REh3NXE=.cu7N3bPxGg8fPxFsIUcjyOISwn+29YpB0l7YDHwkMDg=' }
-  let(:endpoint ) { 'https://testbedapp.giftbit.com/papi/v1/'}
   let :data do
     {
       message: 'Thank you for being an awesome person',
@@ -10,10 +9,6 @@ describe Giftbit do
       contacts: [firstname: 'Sean', lastname: 'Linsley', email: 'sean@modernmsg.com'],
       marketplace_gifts: [id: 1, price_in_cents: 5000]
     }
-  end
-
-  before do
-    Giftbit.endpoint = endpoint
   end
 
   after do

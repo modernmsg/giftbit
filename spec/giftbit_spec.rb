@@ -56,6 +56,21 @@ describe Giftbit do
     }.to raise_error "auth and auths can't both be set"
   end
 
+  it '.each_auth' do
+    Giftbit.auths = {default: auth, custom: 'foo'}
+
+    times_called = 0
+
+    Giftbit.each_auth do |api|
+      times_called += 1
+
+      expect(api).to be_an_instance_of Giftbit
+      expect([auth, 'foo']).to include api.auth
+    end
+
+    expect(times_called).to eq 2
+  end
+
   [:class, :instance].each do |variant|
     describe "(#{variant})" do
       before do |example|
@@ -186,7 +201,7 @@ describe Giftbit do
 
         after do
           api.campaign['campaigns'].map do |campaign|
-            if (campaign['id'].include? 'GiftbitGift') && campaign['status'] == 'QUOTE'
+            if campaign['id'].include?('GiftbitGift') && campaign['status'] == 'QUOTE'
               api.delete_gift campaign['id']
             end
           end

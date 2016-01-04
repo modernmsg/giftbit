@@ -16,9 +16,8 @@ class Giftbit
   # This is useful e.g. to check the status of every gift in every account.
   def self.each_auth
     fail 'no auths set' unless auths
-    auths.each do |name, key|
-      api = new auth: name
-      api.instance_exec{ yield }
+    auths.each do |name, _|
+      yield new auth: name
     end
   end
 

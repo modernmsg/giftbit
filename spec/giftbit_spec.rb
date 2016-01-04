@@ -225,7 +225,7 @@ describe Giftbit do
           data[:quote] = false
           gift = api.create_gift(data)
 
-          sleep 15
+          sleep 30
 
           gifts = api.gifts(campaign_uuid: gift['campaign']['uuid'])
           expect(gifts['gifts'].length).to be > 0
@@ -239,7 +239,7 @@ describe Giftbit do
           end
         end
 
-        it 'can re-send a email for a given campaign gift' do
+        it 'can re-send an email for a given campaign gift' do
           data[:id]    = "GiftbitGift#{Time.now.utc.to_i}"
           data[:quote] = false
           gift = api.create_gift(data)

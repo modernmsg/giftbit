@@ -21,6 +21,10 @@ class Giftbit
     end
   end
 
+  def ==(other)
+    other.is_a?(Giftbit) && auth == other.auth
+  end
+
   module Methods
     def account
       get ''

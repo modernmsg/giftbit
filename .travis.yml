@@ -1,5 +1,8 @@
 language: ruby
 sudo: false
 rvm:
-  - 1.9
   - 2.2
+branches:
+  only:
+    - master
+    - /\A\d-\d-stable\z/

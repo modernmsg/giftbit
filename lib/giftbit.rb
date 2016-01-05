@@ -1,37 +1,51 @@
 require 'giftbit/version'
 require 'giftbit/base'
 
-module Giftbit
-  include Giftbit::Base
+class Giftbit
+  extend Base
+  include Base
 
-  # Convenience methods to interact with resources on top of Giftbit::Base
-  module ClassMethods
-    # Root of resource returns account info
+  # Class-level methods only work if you have a single API account. This lets
+  # you instantiate the API for a given account, if you have multiple.
+  def initialize(auth:)
+    fail 'no auths set' unless auths = self.class.auths
+    self.auth = auths.fetch(auth)
+  end
+
+  # This lets you call the same API requests on every account you have.
+  # This is useful e.g. to check the status of every gift in every account.
+  def self.each_auth
+    fail 'no auths set' unless auths
+    auths.each do |name, _|
+      yield new auth: name
+    end
+  end
+
+  def ==(other)
+    other.is_a?(Giftbit) && auth == other.auth
+  end
+
+  module Methods
     def account
       get ''
     end
 
-    # Marketplace resource
     def marketplace(params = {})
       get 'marketplace', params: params
     end
 
-    # Regions resource
     def regions(params = {})
       get 'marketplace/regions', params: params
     end
 
-    # Vendors resource
     def vendors(params = {})
       get 'marketplace/vendors', params: params
     end
 
-    # Categories resource
     def categories(params = {})
       get 'marketplace/categories', params: params
     end
 
-    # Campaign resource
     def campaign(params = {})
       get 'campaign', params: params
     end
@@ -40,7 +54,6 @@ module Giftbit
       get 'gifts', params: params
     end
 
-    # Create a gift
     def create_gift(body = {})
       body[:expiry] ||= (Date.today + 365).to_s
       body[:quote] = body[:quote] != false
@@ -48,20 +61,16 @@ module Giftbit
       post 'campaign', body: body
     end
 
-
-    # Send a gift
     def send_gift(id)
       put "campaign/#{id}"
     end
 
-    # Delete a gift
     def delete_gift(id)
       delete "campaign/#{id}"
     end
 
-    # Re-send a gift email
     def resend_gift(gift_uuid)
-      put "gifts/#{gift_uuid}", body: { resend: true }
+      put "gifts/#{gift_uuid}", body: {resend: true}
     end
 
     def get_links(campaign_id)
@@ -69,5 +78,6 @@ module Giftbit
     end
   end
 
-  extend ClassMethods
+  extend Methods
+  include Methods
 end

@@ -65,8 +65,12 @@ class Giftbit
       put "campaign/#{id}"
     end
 
-    def delete_gift(id)
+    def delete_campaign(id)
       delete "campaign/#{id}"
+    end
+
+    def delete_gift(gift_uuid)
+      delete "gifts/#{gift_uuid}"
     end
 
     def resend_gift(gift_uuid)

@@ -1,3 +1,4 @@
+require 'json'
 require 'giftbit'
 
 describe Giftbit do
@@ -116,7 +117,7 @@ describe Giftbit do
       describe '#regions' do
         it 'lists all regions' do
           res = api.regions
-          expect(res['regions'].count).to eql 36
+          expect(res['regions'].count).to eql 37
         end
 
         it 'returns Regions Retrieved message' do
@@ -128,7 +129,7 @@ describe Giftbit do
       describe '#vendors' do
         it 'list all vendors' do
           res = api.vendors
-          expect(res['vendors'].count).to eql 24
+          expect(res['vendors'].count).to eql 27
         end
 
         it 'returns Vendors Retrieved message' do
@@ -170,8 +171,8 @@ describe Giftbit do
 
         after  do
           api.campaign['campaigns'].map do |campaign|
-            if campaign['id'].include?('GiftbitGift') && campaign['status'] == 'QUOTE'
-              api.delete_gift campaign['id']
+            if campaign['id']&.include?('GiftbitGift') && campaign['status'] == 'QUOTE'
+              api.delete_campaign campaign['id']
             end
           end
         end
@@ -196,8 +197,8 @@ describe Giftbit do
 
         after do
           api.campaign['campaigns'].map do |campaign|
-            if campaign['id'].include?('GiftbitGift') && campaign['status'] == 'QUOTE'
-              api.delete_gift campaign['id']
+            if campaign['id']&.include?('GiftbitGift') && campaign['status'] == 'QUOTE'
+              api.delete_campaign campaign['id']
             end
           end
         end
@@ -209,7 +210,7 @@ describe Giftbit do
           data[:quote] = true
           gift = api.create_gift(data)
 
-          sleep 5
+          sleep 10
 
           res = api.send_gift(gift['campaign']['id'])
 
@@ -217,14 +218,14 @@ describe Giftbit do
         end
       end
 
-      describe '#delete_gift' do
+      describe '#delete_campaign' do
         it 'deletes the gift with ID' do
           data[:id] = "GiftbitGift#{Time.now.utc.to_i}"
           gift = api.create_gift(data)
 
           sleep 5
 
-          res = api.delete_gift(gift['campaign']['id'])
+          res = api.delete_campaign(gift['campaign']['id'])
           expect(res['info']['name']).to eql 'Campaign Deleted'
         end
       end
@@ -254,7 +255,7 @@ describe Giftbit do
           data[:quote] = false
           gift = api.create_gift(data)
 
-          sleep 15
+          sleep 25
 
           gift = api.gifts(campaign_uuid: gift['campaign']['uuid'])['gifts'].first
 
@@ -265,8 +266,8 @@ describe Giftbit do
 
         after do
           api.campaign['campaigns'].map do |campaign|
-            if campaign['id'].include?('GiftbitGift') && campaign['status'] == 'QUOTE'
-              api.delete_gift campaign['id']
+            if campaign['id']&.include?('GiftbitGift') && campaign['status'] == 'QUOTE'
+              api.delete_campaign campaign['id']
             end
           end
         end

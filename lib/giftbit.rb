@@ -30,6 +30,10 @@ class Giftbit
       get ''
     end
 
+    def funds
+      get 'funds'
+    end
+
     def marketplace(params = {})
       get 'marketplace', params: params
     end

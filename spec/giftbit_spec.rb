@@ -116,7 +116,7 @@ describe Giftbit do
       describe '#regions' do
         it 'lists all regions' do
           res = api.regions
-          expect(res['regions'].count).to eql 37
+          expect(res['regions'].count).to eql 4
         end
 
         it 'returns Regions Retrieved message' do

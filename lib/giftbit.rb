@@ -42,10 +42,6 @@ class Giftbit
       get 'marketplace/vendors', params: params
     end
 
-    def categories(params = {})
-      get 'marketplace/categories', params: params
-    end
-
     def campaign(params = {})
       get 'campaign', params: params
     end

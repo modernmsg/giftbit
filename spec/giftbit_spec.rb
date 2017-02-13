@@ -137,18 +137,6 @@ describe Giftbit do
         end
       end
 
-      describe '#categories' do
-        it 'lists all categories' do
-          res = api.categories
-          expect(res['categories'].count).to eql 15
-        end
-
-        it 'returns Categories Retrieved message' do
-          res = api.categories
-          expect(res['info']['name']).to eql 'Marketplace Categories Retrieved'
-        end
-      end
-
       describe '#campaign' do
         it 'list all campaigns created' do
           res = api.campaign

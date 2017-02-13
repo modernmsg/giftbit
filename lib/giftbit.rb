@@ -57,10 +57,6 @@ class Giftbit
       post 'campaign', body: body
     end
 
-    def send_gift(id)
-      put "campaign/#{id}"
-    end
-
     def delete_campaign(id)
       delete "campaign/#{id}"
     end

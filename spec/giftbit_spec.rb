@@ -191,20 +191,6 @@ describe Giftbit do
         end
       end
 
-      describe '#send_gift' do
-        it 'sends quoted gift with ID' do
-          data[:id]    = "GiftbitGift#{Time.now.utc.to_i}"
-          data[:quote] = true
-          gift = api.create_gift(data)
-
-          sleep 10
-
-          res = api.send_gift(gift['campaign']['id'])
-
-          expect(res['info']['name']).to eql 'Campaign Created'
-        end
-      end
-
       describe '#delete_campaign' do
         it 'deletes the gift with ID' do
           data[:id] = "GiftbitGift#{Time.now.utc.to_i}"

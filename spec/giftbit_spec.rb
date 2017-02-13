@@ -155,58 +155,20 @@ describe Giftbit do
           expect(res['info']['id']).to eql gift['info']['id']
           expect(res['info']['name']).to eql 'Campaign Retrieved'
         end
-
-        after  do
-          api.campaign['campaigns'].map do |campaign|
-            if campaign['id']&.include?('GiftbitGift') && campaign['status'] == 'QUOTE'
-              api.delete_campaign campaign['id']
-            end
-          end
-        end
       end
 
       describe '#create_gift' do
-        it 'create quote for gift default' do
+        it 'creates a gift' do
           data[:id] = "GiftbitGift#{Time.now.utc.to_i}"
-          gift = api.create_gift(data)
-
-          expect(gift['info']['name']).to eql 'Campaign Quote'
-        end
-
-        it 'sends gift right away if quote is set to false' do
-          data[:id]    = "GiftbitGift#{Time.now.utc.to_i}"
-          data[:quote] = false
-
           gift = api.create_gift(data)
 
           expect(gift['info']['name']).to eql 'Campaign Created'
-        end
-
-        after do
-          api.campaign['campaigns'].map do |campaign|
-            if campaign['id']&.include?('GiftbitGift') && campaign['status'] == 'QUOTE'
-              api.delete_campaign campaign['id']
-            end
-          end
-        end
-      end
-
-      describe '#delete_campaign' do
-        it 'deletes the gift with ID' do
-          data[:id] = "GiftbitGift#{Time.now.utc.to_i}"
-          gift = api.create_gift(data)
-
-          sleep 5
-
-          res = api.delete_campaign(gift['campaign']['id'])
-          expect(res['info']['name']).to eql 'Campaign Deleted'
         end
       end
 
       describe '#gifts' do
         it 'can fetch the gifts for a given campaign' do
-          data[:id]    = "GiftbitGift#{Time.now.utc.to_i}"
-          data[:quote] = false
+          data[:id] = "GiftbitGift#{Time.now.utc.to_i}"
           gift = api.create_gift(data)
 
           sleep 30
@@ -224,8 +186,7 @@ describe Giftbit do
         end
 
         it 'can re-send an email for a given campaign gift' do
-          data[:id]    = "GiftbitGift#{Time.now.utc.to_i}"
-          data[:quote] = false
+          data[:id] = "GiftbitGift#{Time.now.utc.to_i}"
           gift = api.create_gift(data)
 
           sleep 25
@@ -235,14 +196,6 @@ describe Giftbit do
           res = api.resend_gift(gift['uuid'])
 
           expect(res['info']['code']).to eql 'INFO_GIFTS_RESENT'
-        end
-
-        after do
-          api.campaign['campaigns'].map do |campaign|
-            if campaign['id']&.include?('GiftbitGift') && campaign['status'] == 'QUOTE'
-              api.delete_campaign campaign['id']
-            end
-          end
         end
       end
 

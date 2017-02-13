@@ -52,13 +52,8 @@ class Giftbit
 
     def create_gift(body = {})
       body[:expiry] ||= (Date.today + 365).to_s
-      body[:quote] = body[:quote] != false
 
       post 'campaign', body: body
-    end
-
-    def delete_campaign(id)
-      delete "campaign/#{id}"
     end
 
     def delete_gift(gift_uuid)

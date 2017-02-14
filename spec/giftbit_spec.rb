@@ -135,6 +135,15 @@ describe Giftbit do
             expect(json).to have_key 'error'
           end
         end
+
+        it 'creates JSON for a server error' do
+          VCR.use_cassette('request-500') do
+            json = api.create_gift
+
+            expect(json['status']).to eql 503
+            expect(json.dig('error', 'message')).to include '<html>'
+          end
+        end
       end
 
       describe '#account' do

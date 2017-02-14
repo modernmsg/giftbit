@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://testbedapp.giftbit.com/papi/v1/campaign
+    body:
+      encoding: UTF-8
+      string: '{"expiry":"2018-02-14"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.0 (darwin16.3.0 x86_64) ruby/2.4.0p0
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.TFdWYU5VTVhzK3JFaVhHT2p5VDRHNFRsUk1ybnk2V2E4TDNDSW5meEdXdTVERUJNeHlDTEU1K216Qk1hb3Q4QlZaTVJvWndjR2ZoS01xc3gzdnZMUHdQckN1Z0kreG9rYVF3c1JjUjNkNlNLVmROQTlJb0hvMmpHdkx2REh3NXE=.cu7N3bPxGg8fPxFsIUcjyOISwn+29YpB0l7YDHwkMDg=
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '23'
+      Host:
+      - testbedapp.giftbit.com
+  response:
+    status:
+      code: 503
+      message: Service Temporarily Unavailable
+    headers:
+      Content-Type:
+      - text/html;charset=UTF-8
+      Content-Length:
+      - '403'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache="set-cookie"
+      Date:
+      - Tue, 14 Feb 2017 19:41:54 GMT
+      P3p:
+      - CP="Giftbit"
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Error from cloudfront
+      Via:
+      - 1.1 631585eaa766d0d1b2a196fb1d81ea69.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - tiAmZ9QQoEx2GHX4FYfUcGDOSp79U9p19HcIDmBVKZ2-1Ygz6vKJIw==
+    body:
+      encoding: UTF-8
+      string: '<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>503 Service Temporarily Unavailable</title> </head><body> <h1>Service Temporarily Unavailable</h1> <p>The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.</p> <hr> <address>Apache/2.2.31 (Amazon) Server at api.giftbit.com Port 80</address> </body></html>'
+    http_version: 
+  recorded_at: Tue, 14 Feb 2017 19:41:55 GMT
+recorded_with: VCR 3.0.3

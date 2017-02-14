@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://testbedapp.giftbit.com/papi/v1/campaign
+    body:
+      encoding: UTF-8
+      string: '{"expiry":"2018-02-14"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.0 (darwin16.3.0 x86_64) ruby/2.4.0p0
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.TFdWYU5VTVhzK3JFaVhHT2p5VDRHNFRsUk1ybnk2V2E4TDNDSW5meEdXdTVERUJNeHlDTEU1K216Qk1hb3Q4QlZaTVJvWndjR2ZoS01xc3gzdnZMUHdQckN1Z0kreG9rYVF3c1JjUjNkNlNLVmROQTlJb0hvMmpHdkx2REh3NXE=.cu7N3bPxGg8fPxFsIUcjyOISwn+29YpB0l7YDHwkMDg=
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '23'
+      Host:
+      - testbedapp.giftbit.com
+  response:
+    status:
+      code: 422
+      message: Unprocessable Entity
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '421'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache="set-cookie"
+      Date:
+      - Tue, 14 Feb 2017 19:41:54 GMT
+      P3p:
+      - CP="Giftbit"
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Error from cloudfront
+      Via:
+      - 1.1 631585eaa766d0d1b2a196fb1d81ea69.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - tiAmZ9QQoEx2GHX4FYfUcGDOSp79U9p19HcIDmBVKZ2-1Ygz6vKJIw==
+    body:
+      encoding: UTF-8
+      string: '{"error":{"code":"ERROR_CAMPAIGN_NO_CONTACTS","name":"No Contacts","message":"There
+        must be at least one contact."},"status":422,"campaign":{"message":null,"subject":null,"contacts":null,"marketplace_gifts":null,"status":"API_CREATING","uuid":"b7de888384fa46a9928464cea77f0d13","suppress_default_greeting":false,"delivery_type":"GIFTBIT_EMAIL","expiry":"2018-02-14","contacts_success_count":0,"contacts_failure_count":0}}'
+    http_version: 
+  recorded_at: Tue, 14 Feb 2017 19:41:55 GMT
+recorded_with: VCR 3.0.3

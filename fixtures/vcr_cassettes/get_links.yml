@@ -1,0 +1,120 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://testbedapp.giftbit.com/papi/v1/campaign
+    body:
+      encoding: UTF-8
+      string: '{"id":"GiftbitGift1487101328","message":"Thank you for being an awesome
+        person","subject":"Present from Community Rewards","contacts":[{"firstname":"Sean","lastname":"Linsley","email":"sean@modernmsg.com"}],"marketplace_gifts":[{"id":1,"price_in_cents":5000}],"delivery_type":"SHORTLINK","expiry":"2018-02-14"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.0 (darwin16.3.0 x86_64) ruby/2.4.0p0
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.TFdWYU5VTVhzK3JFaVhHT2p5VDRHNFRsUk1ybnk2V2E4TDNDSW5meEdXdTVERUJNeHlDTEU1K216Qk1hb3Q4QlZaTVJvWndjR2ZoS01xc3gzdnZMUHdQckN1Z0kreG9rYVF3c1JjUjNkNlNLVmROQTlJb0hvMmpHdkx2REh3NXE=.cu7N3bPxGg8fPxFsIUcjyOISwn+29YpB0l7YDHwkMDg=
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '310'
+      Host:
+      - testbedapp.giftbit.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '1097'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache="set-cookie"
+      Date:
+      - Tue, 14 Feb 2017 19:42:08 GMT
+      P3p:
+      - CP="Giftbit"
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 01635f0b43503ebd4bd390ca2787acb4.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 5k5JcMecf1DB7GTYpehzyje0CoGQSDtjNSja0n22AOHXAetH_5Mrbw==
+    body:
+      encoding: UTF-8
+      string: '{"info":{"code":"INFO_CAMPAIGN_CREATED","name":"Campaign Created","message":"Campaign
+        creation has begun."},"status":200,"campaign":{"message":"Thank you for being
+        an awesome person","subject":"Present from Community Rewards","contacts":[{"email":"sean@modernmsg.com","firstname":"Sean","added_succesfully":true,"lastname":"Linsley","message":"Existing
+        contact"}],"marketplace_gifts":[{"price":5000,"id":1}],"status":"API_CREATING","uuid":"934f5f45a4944c1f80c173bea48baec6","suppress_default_greeting":false,"delivery_type":"SHORTLINK","expiry":"2018-02-14","contacts_success_count":1,"contacts_failure_count":0,"fees":{"cost_entries":[{"percentage":0,"fee_type":"PREFUND_GIFT_COST","amount_in_cents":5000,"currency":"USD","tax_type":"NOTAX","tax_in_cents":0,"number_of_gifts":1,"fee_per_gift_in_cents":5000},{"percentage":0.000,"fee_type":"BREAKAGE_PERCENTAGE","amount_in_cents":0,"currency":"USD","tax_type":"NOTAX","tax_in_cents":0,"number_of_gifts":1,"fee_per_gift_in_cents":0}],"subtotal_in_cents":5000,"tax_in_cents":0,"tax_type":"NOTAX","total_in_cents":5000},"id":"GiftbitGift1487101328"}}'
+    http_version: 
+  recorded_at: Tue, 14 Feb 2017 19:42:09 GMT
+- request:
+    method: get
+    uri: https://testbedapp.giftbit.com/papi/v1/links/GiftbitGift1487101328
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.0 (darwin16.3.0 x86_64) ruby/2.4.0p0
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.TFdWYU5VTVhzK3JFaVhHT2p5VDRHNFRsUk1ybnk2V2E4TDNDSW5meEdXdTVERUJNeHlDTEU1K216Qk1hb3Q4QlZaTVJvWndjR2ZoS01xc3gzdnZMUHdQckN1Z0kreG9rYVF3c1JjUjNkNlNLVmROQTlJb0hvMmpHdkx2REh3NXE=.cu7N3bPxGg8fPxFsIUcjyOISwn+29YpB0l7YDHwkMDg=
+      Content-Type:
+      - application/json
+      Host:
+      - testbedapp.giftbit.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '317'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache="set-cookie"
+      - private, max-age=5
+      Date:
+      - Tue, 14 Feb 2017 19:42:10 GMT
+      Expires:
+      - Tue, 14 Feb 2017 19:42:15 GMT
+      Last-Modified:
+      - Tue, 14 Feb 2017 19:42:10 GMT
+      P3p:
+      - CP="Giftbit"
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 65515d8a06a1e22724be8cfc9b48c004.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - sLn5zktomt92WYTio_F4qUOiD_Mq3RgvptXDSwiwTe_FeW9_QORZ_w==
+    body:
+      encoding: UTF-8
+      string: '{"info":{"code":"INFO_LINKS_GENERATION_IN_PROGRESS","name":"Links have
+        not yet completed generating; request again in 5 minutes","message":"Link
+        generation is not complete. Large campaigns will take some time to process
+        and may be held for manual review; use the /campaign endpoint for more detail
+        on your campaign"}}'
+    http_version: 
+  recorded_at: Tue, 14 Feb 2017 19:42:10 GMT
+recorded_with: VCR 3.0.3

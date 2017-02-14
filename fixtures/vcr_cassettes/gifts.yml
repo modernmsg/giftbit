@@ -1,0 +1,80 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://testbedapp.giftbit.com/papi/v1/gifts
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.0 (darwin16.3.0 x86_64) ruby/2.4.0p0
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.TFdWYU5VTVhzK3JFaVhHT2p5VDRHNFRsUk1ybnk2V2E4TDNDSW5meEdXdTVERUJNeHlDTEU1K216Qk1hb3Q4QlZaTVJvWndjR2ZoS01xc3gzdnZMUHdQckN1Z0kreG9rYVF3c1JjUjNkNlNLVmROQTlJb0hvMmpHdkx2REh3NXE=.cu7N3bPxGg8fPxFsIUcjyOISwn+29YpB0l7YDHwkMDg=
+      Content-Type:
+      - application/json
+      Host:
+      - testbedapp.giftbit.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '11601'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache="set-cookie"
+      - private, max-age=5
+      Date:
+      - Tue, 14 Feb 2017 19:42:05 GMT
+      Expires:
+      - Tue, 14 Feb 2017 19:42:11 GMT
+      Last-Modified:
+      - Tue, 14 Feb 2017 19:42:06 GMT
+      P3p:
+      - CP="Giftbit"
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 9443b13f9c1702357fc79e34ddbc761c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - bBtaE7RbfOgpELbDKjZTXP4VorBfKxGEJFzDyugueDEzbfAxMeKDog==
+    body:
+      encoding: UTF-8
+      string: '{"gifts":[{"uuid":"3818f239d4644465ab75a72c49533563","campaign_uuid":"61ba350394464daa9f15ec7a6d2cf916","delivery_status":"DELIVERED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=61ba350394464daa9f15ec7a6d2cf916&gift_uuid=3818f239d4644465ab75a72c49533563","redelivery_count":0,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487101289","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        11:41:44","delivery_date":"2017-02-14 11:41:47"},{"uuid":"91ab8e093fac4710ab7c628d8a81d419","campaign_uuid":"76c82bb082c949fbb71effa0c84a270a","delivery_status":"DELIVERED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=76c82bb082c949fbb71effa0c84a270a&gift_uuid=91ab8e093fac4710ab7c628d8a81d419","redelivery_count":1,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487096028","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        10:14:01","delivery_date":"2017-02-14 10:14:04"},{"uuid":"b4595c3548db45b3bab30c6602d7ce96","campaign_uuid":"f78799ad224a4985a2913834bd9207c5","delivery_status":"DELIVERED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=f78799ad224a4985a2913834bd9207c5&gift_uuid=b4595c3548db45b3bab30c6602d7ce96","redelivery_count":0,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487095992","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        10:13:25","delivery_date":"2017-02-14 10:13:28"},{"uuid":"789d0c3c8dc8496e87aeaf0f6eec2736","campaign_uuid":"e8506bdcc4904bc9b8fbdfc1ae388984","delivery_status":"DELIVERED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=e8506bdcc4904bc9b8fbdfc1ae388984&gift_uuid=789d0c3c8dc8496e87aeaf0f6eec2736","redelivery_count":0,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487095973","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        10:13:07","delivery_date":"2017-02-14 10:13:10"},{"uuid":"b3c4418edab940fb8f8693358642c54c","campaign_uuid":"2adec976fdac4c38975bc81dfa8b3efe","delivery_status":"DELIVERED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=2adec976fdac4c38975bc81dfa8b3efe&gift_uuid=b3c4418edab940fb8f8693358642c54c","redelivery_count":0,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487095941","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        10:12:41","delivery_date":"2017-02-14 10:12:44"},{"uuid":"1d44009d17e34780885e19646a53db53","campaign_uuid":"ee81e1bbf1054941bc3cc3efbc4ff143","delivery_status":"DELIVERED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=ee81e1bbf1054941bc3cc3efbc4ff143&gift_uuid=1d44009d17e34780885e19646a53db53","redelivery_count":1,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487094608","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        09:50:22","delivery_date":"2017-02-14 09:50:25"},{"uuid":"46dd8ca91f0e426b9145dc5c4aad6a22","campaign_uuid":"6f5bc5a3564349ba87520d04a55b7647","delivery_status":"DELIVERED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=6f5bc5a3564349ba87520d04a55b7647&gift_uuid=46dd8ca91f0e426b9145dc5c4aad6a22","redelivery_count":0,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487094528","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        09:49:01","delivery_date":"2017-02-14 09:49:05"},{"uuid":"43b9d1207c304d73a4a0242afe71277b","campaign_uuid":"a3772458a86d429db18001595a735e96","delivery_status":"DELIVERED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=a3772458a86d429db18001595a735e96&gift_uuid=43b9d1207c304d73a4a0242afe71277b","redelivery_count":0,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487094491","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        09:48:24","delivery_date":"2017-02-14 09:48:27"},{"uuid":"f75e42ebab0747a29e31530bed223315","campaign_uuid":"225ec4f6e20142319ecb845c7e142acd","delivery_status":"DELIVERED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=225ec4f6e20142319ecb845c7e142acd&gift_uuid=f75e42ebab0747a29e31530bed223315","redelivery_count":0,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487094428","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        09:47:21","delivery_date":"2017-02-14 09:47:24"},{"uuid":"c7444574fe034b53b207e761254978e0","campaign_uuid":"121c6054a22543ff9cf57797ada5d2a7","delivery_status":"LINKCREATED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=121c6054a22543ff9cf57797ada5d2a7&gift_uuid=c7444574fe034b53b207e761254978e0","redelivery_count":0,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487094404","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        09:46:57","delivery_date":"2017-02-14 09:46:59","shortlink":"http://gtbt.co/AmPBNhHkTj4"},{"uuid":"2b9f90ef588c4fc5843dcce95c511839","campaign_uuid":"c44c06643bd64552a3ceeb4793ea1ed4","delivery_status":"DELIVERED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=c44c06643bd64552a3ceeb4793ea1ed4&gift_uuid=2b9f90ef588c4fc5843dcce95c511839","redelivery_count":0,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487094373","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        09:46:26","delivery_date":"2017-02-14 09:46:29"},{"uuid":"a030e72bea9b4d688f8cfa4f042d00e4","campaign_uuid":"64a26f28e26b4fbc9dcbcadb22e62693","delivery_status":"DELIVERED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=64a26f28e26b4fbc9dcbcadb22e62693&gift_uuid=a030e72bea9b4d688f8cfa4f042d00e4","redelivery_count":0,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487094369","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        09:46:22","delivery_date":"2017-02-14 09:46:25"},{"uuid":"60a5f530e83247f89a8b4e402962975f","campaign_uuid":"3e4e6f37d7974fc2bc638b0fa8b2d352","delivery_status":"LINKCREATED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=3e4e6f37d7974fc2bc638b0fa8b2d352&gift_uuid=60a5f530e83247f89a8b4e402962975f","redelivery_count":0,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487094289","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        09:45:03","delivery_date":"2017-02-14 09:45:05","shortlink":"http://gtbt.co/vTvkhxXnPvC"},{"uuid":"b1fd3ba9854e4afead8258153b7cdc4b","campaign_uuid":"9d0dee622fd74a5b9a9772e53717da86","delivery_status":"DELIVERED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=9d0dee622fd74a5b9a9772e53717da86&gift_uuid=b1fd3ba9854e4afead8258153b7cdc4b","redelivery_count":0,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487094287","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        09:45:01","delivery_date":"2017-02-14 09:45:04"},{"uuid":"f86e3a19f3d94b6abb6c80b37ab07b32","campaign_uuid":"6924d73811d3477dbdbc7f818e310aed","delivery_status":"DELIVERED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=6924d73811d3477dbdbc7f818e310aed&gift_uuid=f86e3a19f3d94b6abb6c80b37ab07b32","redelivery_count":0,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487094286","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        09:44:59","delivery_date":"2017-02-14 09:45:03"},{"uuid":"fbf47fbbd8694796ac3816948a719529","campaign_uuid":"a9c8594c19a5432ca050604dcb705bbe","delivery_status":"DELIVERED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=a9c8594c19a5432ca050604dcb705bbe&gift_uuid=fbf47fbbd8694796ac3816948a719529","redelivery_count":0,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487094282","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        09:44:56","delivery_date":"2017-02-14 09:44:59"},{"uuid":"2f3d40b381c247a8b6ea39356dc1622f","campaign_uuid":"4e32c4d6791147e3b62aaa3944c961db","delivery_status":"DELIVERED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=4e32c4d6791147e3b62aaa3944c961db&gift_uuid=2f3d40b381c247a8b6ea39356dc1622f","redelivery_count":1,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487094029","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        09:40:45","delivery_date":"2017-02-14 09:40:48"},{"uuid":"87fb712dc99c43db90447c5717ad2e1a","campaign_uuid":"d0a4242d5d2447b0be17bcd8c02ba38b","delivery_status":"LINKCREATED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=d0a4242d5d2447b0be17bcd8c02ba38b&gift_uuid=87fb712dc99c43db90447c5717ad2e1a","redelivery_count":0,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487093485","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        09:31:43","delivery_date":"2017-02-14 09:31:45","shortlink":"http://gtbt.co/Ekau6J3yxm5"},{"uuid":"8aa852a699c34bdd8a2e1c605be06823","campaign_uuid":"39e38b74a8aa4fedb4320cb8076474d7","delivery_status":"DELIVERED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=39e38b74a8aa4fedb4320cb8076474d7&gift_uuid=8aa852a699c34bdd8a2e1c605be06823","redelivery_count":0,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487093460","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        09:31:33","delivery_date":"2017-02-14 09:31:37"},{"uuid":"68ce276a14cd4fc8993fa7bea63e78df","campaign_uuid":"fc49f431b2ff47e6950e1b8536ad71ef","delivery_status":"DELIVERED","status":"SENT_AND_REDEEMABLE","management_dashboard_link":"http://testbedapp.giftbit.com/campaign/campaignInfo?uuid=fc49f431b2ff47e6950e1b8536ad71ef&gift_uuid=68ce276a14cd4fc8993fa7bea63e78df","redelivery_count":0,"recipient_email":"sean@modernmsg.com","campaign_id":"GiftbitGift1487093458","recipient_name":"Sean","price_in_cents":5000,"marketplacegift_id":"1","created_date":"2017-02-14
+        09:31:13","delivery_date":"2017-02-14 09:31:16"}],"number_of_results":20,"limit":20,"offset":0,"total_count":875,"info":{"code":"INFO_GIFTS","name":"Gift
+        information retrieved","message":"Returned gifts matching your search parameters."},"status":200}'
+    http_version: 
+  recorded_at: Tue, 14 Feb 2017 19:42:06 GMT
+recorded_with: VCR 3.0.3

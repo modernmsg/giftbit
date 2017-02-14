@@ -42,10 +42,6 @@ class Giftbit
       get 'marketplace/vendors', params: params
     end
 
-    def categories(params = {})
-      get 'marketplace/categories', params: params
-    end
-
     def campaign(params = {})
       get 'campaign', params: params
     end
@@ -56,17 +52,8 @@ class Giftbit
 
     def create_gift(body = {})
       body[:expiry] ||= (Date.today + 365).to_s
-      body[:quote] = body[:quote] != false
 
       post 'campaign', body: body
-    end
-
-    def send_gift(id)
-      put "campaign/#{id}"
-    end
-
-    def delete_campaign(id)
-      delete "campaign/#{id}"
     end
 
     def delete_gift(gift_uuid)

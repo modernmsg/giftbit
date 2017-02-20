@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://testbedapp.giftbit.com/papi/v1/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.0 (darwin16.3.0 x86_64) ruby/2.4.0p0
+      Authorization:
+      - Bearer notavalidtoken
+      Content-Type:
+      - application/json
+      Host:
+      - testbedapp.giftbit.com
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache="set-cookie"
+      Date:
+      - Tue, 14 Feb 2017 19:41:55 GMT
+      P3p:
+      - CP="Giftbit"
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Error from cloudfront
+      Via:
+      - 1.1 3336340a46390eb94ce8a4b00e4863fc.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - CntfXweP8hlX9gFMGm0fk1-i2iT9LqBPCYx-NSQQbSAl8MA95SyrrA==
+    body:
+      encoding: UTF-8
+      string: '{"status":401,"text":"Unauthorized"}'
+    http_version: 
+  recorded_at: Tue, 14 Feb 2017 19:41:56 GMT
+recorded_with: VCR 3.0.3

@@ -60,13 +60,21 @@ class Giftbit
 
     def response(method, resource, options = {})
       if body = options.delete(:body)
-        JSON.parse resource.send(method, JSON.generate(body), options)
+        json = resource.send(method, JSON.generate(body), options)
       else
-        JSON.parse resource.send(method, options)
+        json = resource.send(method, options)
       end
-    rescue => e
-      if e.respond_to?(:response)
-        JSON.parse(e.response)
+
+      JSON.parse json
+    rescue RestClient::ExceptionWithResponse => e
+      case e.http_code
+      when 400..499
+        JSON.parse e.response
+      when 500..599
+        {
+          'status' => e.http_code,
+          'error' => { 'message' => e.response }
+        }
       else
         raise
       end

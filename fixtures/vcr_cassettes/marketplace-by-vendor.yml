@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://testbedapp.giftbit.com/papi/v1/marketplace?vendor=6
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.0 (darwin16.3.0 x86_64) ruby/2.4.0p0
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.TFdWYU5VTVhzK3JFaVhHT2p5VDRHNFRsUk1ybnk2V2E4TDNDSW5meEdXdTVERUJNeHlDTEU1K216Qk1hb3Q4QlZaTVJvWndjR2ZoS01xc3gzdnZMUHdQckN1Z0kreG9rYVF3c1JjUjNkNlNLVmROQTlJb0hvMmpHdkx2REh3NXE=.cu7N3bPxGg8fPxFsIUcjyOISwn+29YpB0l7YDHwkMDg=
+      Content-Type:
+      - application/json
+      Host:
+      - testbedapp.giftbit.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '226'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache="set-cookie"
+      - private, max-age=60
+      Date:
+      - Tue, 14 Feb 2017 19:41:57 GMT
+      Expires:
+      - Tue, 14 Feb 2017 19:42:58 GMT
+      Last-Modified:
+      - Tue, 14 Feb 2017 19:41:58 GMT
+      P3p:
+      - CP="Giftbit"
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 f58cdb0e43d281e74101f60fc3b46398.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - FB3lpyyDz74uTyszxajZ7vwOlZgWrbaYr864bXcU27zl5o8fKVbI1w==
+    body:
+      encoding: UTF-8
+      string: '{"marketplace_gifts":[],"number_of_results":0,"info":{"code":"INFO_MARKETPLACE_RETRIEVED","name":"Marketplace
+        Gifts Retrieved","message":"A list of marketplace gifts has been retrieved."},"limit":20,"offset":0,"total_count":0}'
+    http_version: 
+  recorded_at: Tue, 14 Feb 2017 19:41:58 GMT
+recorded_with: VCR 3.0.3

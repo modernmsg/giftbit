@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://testbedapp.giftbit.com/papi/v1/campaign
+    body:
+      encoding: UTF-8
+      string: '{"id":"GiftbitGift1487101313","message":"Thank you for being an awesome
+        person","subject":"Present from Community Rewards","contacts":[{"firstname":"Sean","lastname":"Linsley","email":"sean@modernmsg.com"}],"marketplace_gifts":[{"id":1,"price_in_cents":5000}],"expiry":"2018-02-14"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.0 (darwin16.3.0 x86_64) ruby/2.4.0p0
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.TFdWYU5VTVhzK3JFaVhHT2p5VDRHNFRsUk1ybnk2V2E4TDNDSW5meEdXdTVERUJNeHlDTEU1K216Qk1hb3Q4QlZaTVJvWndjR2ZoS01xc3gzdnZMUHdQckN1Z0kreG9rYVF3c1JjUjNkNlNLVmROQTlJb0hvMmpHdkx2REh3NXE=.cu7N3bPxGg8fPxFsIUcjyOISwn+29YpB0l7YDHwkMDg=
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '282'
+      Host:
+      - testbedapp.giftbit.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '1101'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache="set-cookie"
+      Date:
+      - Tue, 14 Feb 2017 19:41:53 GMT
+      P3p:
+      - CP="Giftbit"
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 7535f1fa7462c24d8a3add0701350cb5.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - R15PA1t_Kg9mZm8Xzv7kbH4_whizPDTGOIZ7WAwd9gn8hH976wgnmw==
+    body:
+      encoding: UTF-8
+      string: '{"info":{"code":"INFO_CAMPAIGN_CREATED","name":"Campaign Created","message":"Campaign
+        creation has begun."},"status":200,"campaign":{"message":"Thank you for being
+        an awesome person","subject":"Present from Community Rewards","contacts":[{"email":"sean@modernmsg.com","firstname":"Sean","added_succesfully":true,"lastname":"Linsley","message":"Existing
+        contact"}],"marketplace_gifts":[{"price":5000,"id":1}],"status":"API_CREATING","uuid":"5874c61b12cf41ea88d085e2e5d0bc3c","suppress_default_greeting":false,"delivery_type":"GIFTBIT_EMAIL","expiry":"2018-02-14","contacts_success_count":1,"contacts_failure_count":0,"fees":{"cost_entries":[{"percentage":0,"fee_type":"PREFUND_GIFT_COST","amount_in_cents":5000,"currency":"USD","tax_type":"NOTAX","tax_in_cents":0,"number_of_gifts":1,"fee_per_gift_in_cents":5000},{"percentage":0.000,"fee_type":"BREAKAGE_PERCENTAGE","amount_in_cents":0,"currency":"USD","tax_type":"NOTAX","tax_in_cents":0,"number_of_gifts":1,"fee_per_gift_in_cents":0}],"subtotal_in_cents":5000,"tax_in_cents":0,"tax_type":"NOTAX","total_in_cents":5000},"id":"GiftbitGift1487101313"}}'
+    http_version: 
+  recorded_at: Tue, 14 Feb 2017 19:41:54 GMT
+recorded_with: VCR 3.0.3

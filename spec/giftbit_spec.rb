@@ -167,9 +167,11 @@ describe Giftbit do
 
       describe '#funds' do
         it 'returns funds info' do
-          res = api.funds
-          expect(res['info']['name']).to eql 'Fund information retrieved'
-          expect(res['fundsbycurrency']['USD']['available_in_cents']). to be >= 0
+          VCR.use_cassette('funds') do
+            res = api.funds
+            expect(res['info']['name']).to eql 'Fund information retrieved'
+            expect(res['fundsbycurrency']['USD']['available_in_cents']). to be >= 0
+          end
         end
       end
 

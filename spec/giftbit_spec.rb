@@ -165,6 +165,16 @@ describe Giftbit do
         end
       end
 
+      describe '#funds' do
+        it 'returns funds info' do
+          VCR.use_cassette('funds') do
+            res = api.funds
+            expect(res['info']['name']).to eql 'Fund information retrieved'
+            expect(res['fundsbycurrency']['USD']['available_in_cents']). to be >= 0
+          end
+        end
+      end
+
       describe '#marketplace' do
         it 'lists all gifts' do
           VCR.use_cassette('marketplace-all') do

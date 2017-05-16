@@ -1,0 +1,66 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://testbedapp.giftbit.com/papi/v1/funds
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.TFdWYU5VTVhzK3JFaVhHT2p5VDRHNFRsUk1ybnk2V2E4TDNDSW5meEdXdTVERUJNeHlDTEU1K216Qk1hb3Q4QlZaTVJvWndjR2ZoS01xc3gzdnZMUHdQckN1Z0kreG9rYVF3c1JjUjNkNlNLVmROQTlJb0hvMmpHdkx2REh3NXE=.cu7N3bPxGg8fPxFsIUcjyOISwn+29YpB0l7YDHwkMDg=
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '222'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store
+      - no-cache="set-cookie"
+      Content-Encoding:
+      - gzip
+      Date:
+      - Mon, 15 May 2017 18:59:04 GMT
+      Expires:
+      - Sun, 14 May 2017 18:59:04 GMT
+      P3p:
+      - CP="Giftbit"
+      Pragma:
+      - no-cache
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - SAMEORIGIN
+      Vary:
+      - Accept-Encoding
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 a75342fa94ff4a9431476624fe74f02e.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - WsSdceVTAn15UYQgJqcAjqPDMeODiSrO6LRlWWbbCE-5E1P_6T1quw==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA6yOTQuCQBCG/8oyZ4kt+zBvlQhdNBIPnWRbp1jQNXa1EPG/
+        t0uHJCgKmsvAzPM+Mx0IearA74BXOYIP2yiMszCNggQckKy0s7CRObGcKlkt
+        KkkU1krgFXPDlKg1O1vsUDWK8EYplDU5vWZuTD9zI+gdsIg+to8Eb+0TaRLY
+        xq5MFOxYYCZkxo1Ogz9eLr2JS6dz14ELylzI82BLHVCoURn3MDN1Z5RSc2uz
+        +iS25S1m34utcpW+VdLfTLt9/CfTOvrPT31/BwAA//8DAOZFBEQZAgAA
+    http_version: 
+  recorded_at: Mon, 15 May 2017 18:59:04 GMT
+recorded_with: VCR 2.9.3

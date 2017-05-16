@@ -24,7 +24,25 @@ gem install giftbit
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+Giftbit.auth = 'token'
+
+Giftbit.funds
+# {"info"=>{"code"=>"INFO_FUNDS", "name"=>"Fund information retrieved", ...}
+
+Giftbit.create_gift subject: 'Subject string',
+  message: 'Extended message',
+  contacts: [
+    firstname: user.first_name,
+    lastname:  user.last_name,
+    email:     user.email,
+  ],
+  marketplace_gifts: [{id: 1234, price_in_cents: 500}],
+  expiry: (Date.today + 30).to_s,
+  delivery_type: 'GIFTBIT_EMAIL'
+```
+
+See the [code](https://github.com/modernmsg/giftbit/blob/v1.0.0/lib/giftbit.rb#L28) for more API methods.
 
 ## Contributing
 
